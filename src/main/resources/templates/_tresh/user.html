@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>All users</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>User name</th>
+        <th>Role</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${oneUser}">
+        <td th:text="${user.username}"></td>
+        <td>
+        <span th:each="role : ${user.getRoles()}">
+            <span th:text="${role.getName()}"></span>
+        </span>
+        </td>
+        <td><a th:href="@{user/user-update/{id}(id=${user.id})}">
+            <input type="submit" value="Update"/></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<a th:href="@{/login}">
+    <input type="submit" value="Exit"/>
+</a>
+</body>
+</html>
