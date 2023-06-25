@@ -11,12 +11,15 @@ import java.util.Set;
 @Data
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
+
     @Id
     @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String name;
+
     @ManyToMany(mappedBy = "roles")
     @Transient
     private Set<User> userSet = new HashSet<>();

@@ -12,12 +12,15 @@ import java.util.Set;
 @Entity
 @Table(name = "userss")
 public class User implements UserDetails {
+
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String username;
+
     @Column
     private String password;
 
@@ -28,6 +31,7 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
     public User() {
     }
 
@@ -36,6 +40,7 @@ public class User implements UserDetails {
         this.password = password;
         this.roles = roles;
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
